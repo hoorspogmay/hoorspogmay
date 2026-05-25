@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hoor Spogmay — Software Engineer</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { fontFamily: { display: ['Cormorant Garamond','serif'], body: ['DM Sans','sans-serif'], mono: ['DM Mono','monospace'] } } }
+    }
+  </script>
+</head>
+<body class="font-body overflow-x-hidden">
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+  <div class="noise-overlay"></div>
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 nav-blur">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#hero" class="font-display text-xl font-light tracking-widest text-gold logo-text">HS</a>
+      <div class="hidden md:flex items-center gap-7">
+        <a href="#about"      class="nav-link text-xs tracking-widest uppercase">About</a>
+        <a href="#projects"   class="nav-link text-xs tracking-widest uppercase">Projects</a>
+        <a href="#deployments" class="nav-link text-xs tracking-widest uppercase">Deployments</a>
+        <a href="#resume"     class="nav-link text-xs tracking-widest uppercase">Resume</a>
+        <a href="#videos"     class="nav-link text-xs tracking-widest uppercase">Videos</a>
+        <a href="#experience" class="nav-link text-xs tracking-widest uppercase">Experience</a>
+        <a href="#contact"    class="nav-link text-xs tracking-widest uppercase">Contact</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <button id="themeToggle" class="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+          <svg class="theme-icon sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="theme-icon moon-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+          </svg>
+        </button>
+        <button class="md:hidden menu-btn text-gold" id="menuBtn">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 hidden" id="mobileMenu">
+    <button class="absolute top-6 right-6 text-gold" id="closeMenu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <a href="#about"       class="font-display text-4xl mobile-nav-link">About</a>
+    <a href="#projects"    class="font-display text-4xl mobile-nav-link">Projects</a>
+    <a href="#deployments" class="font-display text-4xl mobile-nav-link">Deployments</a>
+    <a href="#resume"      class="font-display text-4xl mobile-nav-link">Resume</a>
+    <a href="#videos"      class="font-display text-4xl mobile-nav-link">Videos</a>
+    <a href="#experience"  class="font-display text-4xl mobile-nav-link">Experience</a>
+    <a href="#contact"     class="font-display text-4xl mobile-nav-link">Contact</a>
+  </div>
+
+  <!-- ═══════════════════════════════════════ HERO -->
+  <section id="hero" class="min-h-screen flex items-center relative overflow-hidden">
+    <div class="hero-bg-grid"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="max-w-7xl mx-auto px-6 py-32 relative z-10">
+      <p class="font-mono text-gold text-sm tracking-[0.4em] uppercase mb-6 animate-fade-up delay-100">Software Engineering Student · Riphah International University</p>
+      <h1 class="font-display text-[clamp(3.5rem,10vw,9rem)] font-light leading-[0.9] mb-8 animate-fade-up delay-200">
+        Hoor<br/><em class="italic text-gold">Spogmay</em>
+      </h1>
+      <p class="text-muted text-lg max-w-xl leading-relaxed mb-12 animate-fade-up delay-300">
+        Full-stack developer, deployment engineer &amp; society president. Building AI-powered platforms, real-time systems, and production-grade websites — from code to live domain.
+      </p>
+
+      <!-- Stats row -->
+      <div class="hero-stats animate-fade-up delay-350">
+        <div class="hero-stat">
+          <span class="hero-stat-num">8+</span>
+          <span class="hero-stat-label">Projects Built</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">2</span>
+          <span class="hero-stat-label">Society Presidencies</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">2</span>
+          <span class="hero-stat-label">Live Deployments</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">1</span>
+          <span class="hero-stat-label">Competition Award</span>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap gap-4 animate-fade-up delay-400 mt-10">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="Hoor Spogmay CV.pdf" download class="btn-secondary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download CV
+        </a>
+        <a href="#contact" class="btn-ghost">Get In Touch</a>
+      </div>
+
+      <div class="flex items-center gap-4 mt-10 animate-fade-up delay-500">
+        <a href="https://github.com/hoorspogmay" target="_blank" class="social-icon-link" title="GitHub">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/hoor-spogmay/" target="_blank" class="social-icon-link" title="LinkedIn">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="mailto:hoorspogmay48@gmail.com" class="social-icon-link" title="Email">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 scroll-indicator"><div class="scroll-line"></div></div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ ABOUT -->
+  <section id="about" class="py-32 relative">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="section-header mb-20">
+        <span class="font-mono text-gold text-xs tracking-[0.4em] uppercase">01 — About</span>
+        <h2 class="font-display text-[clamp(2.5rem,6vw,5rem)] font-light mt-4">Who I Am</h2>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
+        <div>
+          <p class="font-display text-xl font-light text-gold italic leading-relaxed mb-6">"Passionate about building meaningful technology solutions and fostering student innovation."</p>
+          <p class="text-muted leading-relaxed mb-6">I'm a Software Engineering student at Riphah International University, Islamabad, leading two major university tech societies. My work spans full-stack development, AI-powered platforms, real-time systems, and production deployments.</p>
+          <p class="text-muted leading-relaxed mb-10">As current President of Riphah Computing Society (2026–2027) and former President of CyberSphere (2024–2025), I've organized hackathons, coding competitions, and large-scale tech events. Beyond university, I build and ship real-world websites — handling everything from code to domain, DNS, hosting, security, and SEO.</p>
+          <div class="grid grid-cols-2 gap-4">
+            <div class="about-card">
+              <h4 class="font-mono text-gold text-xs tracking-widest uppercase mb-3">Education</h4>
+              <p class="text-sm text-primary">BS Software Engineering</p>
+              <p class="text-xs text-dim mt-1">Riphah International University</p>
+              <p class="text-xs text-dim">2023 – 2027</p>
+            </div>
+            <div class="about-card">
+              <h4 class="font-mono text-gold text-xs tracking-widest uppercase mb-3">Location</h4>
+              <p class="text-sm text-primary">Naval Anchorage</p>
+              <p class="text-xs text-dim mt-1">Islamabad, Pakistan</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Skills -->
+        <div>
+          <h3 class="font-mono text-xs text-dim tracking-widest uppercase mb-8">Technical Skills</h3>
+
+          <div class="skill-category mb-7">
+            <p class="skill-cat-label">Languages</p>
+            <div class="skill-pills">
+              <span class="skill-pill">JavaScript</span><span class="skill-pill">Python</span>
+              <span class="skill-pill">Java</span><span class="skill-pill">C / C++</span>
+              <span class="skill-pill">HTML / CSS</span>
+            </div>
+          </div>
+          <div class="skill-category mb-7">
+            <p class="skill-cat-label">Frontend</p>
+            <div class="skill-pills">
+              <span class="skill-pill">React.js</span><span class="skill-pill">React Native</span>
+              <span class="skill-pill">Tailwind CSS</span><span class="skill-pill">Figma</span>
+            </div>
+          </div>
+          <div class="skill-category mb-7">
+            <p class="skill-cat-label">Backend &amp; Database</p>
+            <div class="skill-pills">
+              <span class="skill-pill">Node.js</span><span class="skill-pill">Express.js</span>
+              <span class="skill-pill">MongoDB</span><span class="skill-pill">MySQL</span>
+            </div>
+          </div>
+          <div class="skill-category mb-7">
+            <p class="skill-cat-label">Deployment &amp; DevOps</p>
+            <div class="skill-pills">
+              <span class="skill-pill">GitHub Pages</span><span class="skill-pill">Cloudflare DNS</span>
+              <span class="skill-pill">HTTPS / SSL</span><span class="skill-pill">Domain Setup</span>
+              <span class="skill-pill">Google Indexing</span>
+            </div>
+          </div>
+          <div class="skill-category mb-8">
+            <p class="skill-cat-label">AI &amp; Tools</p>
+            <div class="skill-pills">
+              <span class="skill-pill">MediaPipe</span><span class="skill-pill">AI Integration</span>
+              <span class="skill-pill">Postman</span><span class="skill-pill">Jira</span><span class="skill-pill">Git / GitHub</span>
+            </div>
+          </div>
+
+          <p class="skill-cat-label mb-5">Proficiency</p>
+          <div class="space-y-4">
+            <div class="skill-bar-item">
+              <div class="flex justify-between mb-2"><span class="text-sm text-primary">Full-Stack (MERN)</span><span class="font-mono text-xs text-gold">90%</span></div>
+              <div class="skill-track"><div class="skill-fill" data-width="90"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="flex justify-between mb-2"><span class="text-sm text-primary">Python / AI / ML</span><span class="font-mono text-xs text-gold">85%</span></div>
+              <div class="skill-track"><div class="skill-fill" data-width="85"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="flex justify-between mb-2"><span class="text-sm text-primary">React Native</span><span class="font-mono text-xs text-gold">80%</span></div>
+              <div class="skill-track"><div class="skill-fill" data-width="80"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="flex justify-between mb-2"><span class="text-sm text-primary">UI / UX Design</span><span class="font-mono text-xs text-gold">78%</span></div>
+              <div class="skill-track"><div class="skill-fill" data-width="78"></div></div>
+            </div>
+            <div class="skill-bar-item">
+              <div class="flex justify-between mb-2"><span class="text-sm text-primary">Deployment &amp; DNS</span><span class="font-mono text-xs text-gold">82%</span></div>
+              <div class="skill-track"><div class="skill-fill" data-width="82"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ PROJECTS -->
+  <section id="projects" class="py-32 relative">
+    <div class="projects-bg"></div>
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="section-header mb-12">
+        <span class="font-mono text-gold text-xs tracking-[0.4em] uppercase">02 — Projects</span>
+        <h2 class="font-display text-[clamp(2.5rem,6vw,5rem)] font-light mt-4">Selected Work</h2>
+      </div>
+
+      <div class="filter-bar mb-12">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="web">Web</button>
+        <button class="filter-btn" data-filter="mobile">Mobile</button>
+        <button class="filter-btn" data-filter="ai">AI</button>
+        <button class="filter-btn" data-filter="uiux">UI / UX</button>
+        <button class="filter-btn" data-filter="deployment">Deployed</button>
+        <button class="filter-btn" data-filter="other">Other</button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="projectGrid">
+
+        <!-- Speed-Flo — NEW FEATURED CARD -->
+        <div class="project-card featured-card col-span-1 md:col-span-2" data-category="web deployment uiux">
+          <div class="project-number">01</div>
+          <div class="flex flex-wrap gap-2 mb-3">
+            <div class="project-badge live-badge">🌐 Live</div>
+            <div class="project-badge">Client Work</div>
+          </div>
+          <h3 class="font-display text-3xl font-light text-primary mb-3">Speed-Flo Filter Industries</h3>
+          <p class="text-muted text-sm leading-relaxed mb-4">Full production website for Pakistan's leading filter manufacturer — serving the automotive, defence, and industrial sectors. Built in pure HTML, CSS &amp; JavaScript with a professional multi-page architecture.</p>
+
+          <!-- Deployment pipeline highlight -->
+          <div class="deploy-pipeline mb-6">
+            <span class="deploy-step">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              HTML/CSS/JS
+            </span>
+            <span class="deploy-arrow">→</span>
+            <span class="deploy-step">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub Pages
+            </span>
+            <span class="deploy-arrow">→</span>
+            <span class="deploy-step">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Cloudflare DNS
+            </span>
+            <span class="deploy-arrow">→</span>
+            <span class="deploy-step active-step">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+              HTTPS Live
+            </span>
+          </div>
+
+          <!-- What I did checklist -->
+          <div class="achievement-list mb-6">
+            <div class="achievement-item">
+              <span class="achievement-check">✓</span>
+              <span class="text-sm text-muted">Designed &amp; developed full multi-page website (HTML, CSS, JS)</span>
+            </div>
+            <div class="achievement-item">
+              <span class="achievement-check">✓</span>
+              <span class="text-sm text-muted">Free hosting via GitHub Pages</span>
+            </div>
+            <div class="achievement-item">
+              <span class="achievement-check">✓</span>
+              <span class="text-sm text-muted">Custom domain connected &amp; configured DNS via Cloudflare</span>
+            </div>
+            <div class="achievement-item">
+              <span class="achievement-check">✓</span>
+              <span class="text-sm text-muted">Secured with HTTPS / SSL certificate</span>
+            </div>
+            <div class="achievement-item">
+              <span class="achievement-check">✓</span>
+              <span class="text-sm text-muted">Submitted sitemap &amp; set up Google Search Console indexing</span>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="tech-tag">HTML/CSS/JS</span><span class="tech-tag">GitHub Pages</span>
+            <span class="tech-tag">Cloudflare</span><span class="tech-tag">Custom Domain</span>
+            <span class="tech-tag">Google SEO</span><span class="tech-tag">HTTPS</span>
+          </div>
+
+          <a href="https://speed-flofilters.com/" target="_blank" class="project-live-link">
+            Visit Live Site
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+          <div class="cat-dots">
+            <span class="cat-dot web" title="Web"></span>
+            <span class="cat-dot uiux" title="UI/UX"></span>
+            <span class="cat-dot deployment" title="Deployed"></span>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="web uiux deployment">
+          <div class="project-number">02</div>
+          <div class="project-badge">Ongoing</div>
+          <h3 class="font-display text-2xl font-light text-primary mb-3">Redesigned PIMS Website</h3>
+          <p class="text-muted text-sm leading-relaxed mb-6">Modern full-stack redesign for Pakistan Institute of Medical Sciences with improved UI/UX, responsiveness, and patient-focused features.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="tech-tag">MERN Stack</span><span class="tech-tag">React Native</span><span class="tech-tag">UI/UX</span>
+          </div>
+          <div class="cat-dots">
+            <span class="cat-dot web" title="Web"></span>
+            <span class="cat-dot uiux" title="UI/UX"></span>
+          </div>
+        </div>
+
+<!-- Replace the entire Parwarish card (project card 03) with this -->
+
+<div class="project-card parwarish-card" data-category="ai web">
+  <div class="project-number">03</div>
+  <div class="flex flex-wrap gap-2 mb-3">
+    <div class="project-badge award">🏆 Runner-Up</div>
+    <div class="project-badge award">💰 PKR 20,000 Prize</div>
+  </div>
+
+  <div class="parwarish-layout">
+    <!-- Left side: Content -->
+    <div class="parwarish-content">
+      <h3 class="font-display text-2xl font-light text-primary mb-2">Parwarish</h3>
+      <p class="text-muted text-sm leading-relaxed mb-4">Culturally-aware AI platform addressing digital wellness for Pakistani youth — tackling screen overexposure, academic pressure, and emotional stimulation. Pitched at <span class="text-gold">National Incubation Center, Islamabad</span> (GDG FAST + NIC Parwaz-e-Takhayul competition). Awarded Runner-Up and a PKR 20,000 cash prize.</p>
+      <div class="flex flex-wrap gap-2 mb-0">
+        <span class="tech-tag">AI</span>
+        <span class="tech-tag">Digital Wellness</span>
+        <span class="tech-tag">NIC Islamabad</span>
+      </div>
+    </div>
+
+    <!-- Right side: Auto-scrolling gallery -->
+    <div class="parwarish-gallery-right">
+      <div class="gallery-viewer" id="parwarishViewer">
+        <img id="galleryMainImg" src="parwarish-award.jpeg" alt="Parwarish Runner-Up award" loading="lazy"/>
+        <div class="gallery-nav">
+          <button class="gallery-nav-btn prev" id="galleryPrevBtn">&#8249;</button>
+          <div class="gallery-dots" id="galleryDots">
+            <span class="dot active" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
+            <span class="dot" data-index="3"></span>
+          </div>
+          <button class="gallery-nav-btn next" id="galleryNextBtn">&#8250;</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cat-dots">
+    <span class="cat-dot ai" title="AI"></span>
+    <span class="cat-dot web" title="Web"></span>
+  </div>
+</div>
+
+  <div class="cat-dots"><span class="cat-dot ai" title="AI"></span><span class="cat-dot web" title="Web"></span></div>
+</div>
+
+
+
+        <div class="project-card" data-category="ai">
+          <div class="project-number">04</div>
+          <div class="project-badge">AI Agent</div>
+          <h3 class="font-display text-2xl font-light text-primary mb-3">Drowsiness Detection</h3>
+          <p class="text-muted text-sm leading-relaxed mb-6">Real-time Goal-Based AI agent detecting driver drowsiness via facial landmark analysis using MediaPipe. Tracks eye aspect ratio and blink patterns in live webcam feed, triggering audio and visual alerts when fatigue is detected.</p>
+          <div class="flex flex-wrap gap-2"><span class="tech-tag">Python</span><span class="tech-tag">MediaPipe</span><span class="tech-tag">AI</span></div>
+          <div class="cat-dots"><span class="cat-dot ai" title="AI"></span></div>
+        </div>
+
+        <div class="project-card" data-category="web other">
+          <div class="project-number">05</div>
+          <div class="project-badge">Developer Tool</div>
+          <h3 class="font-display text-2xl font-light text-primary mb-3">Swift-Scan</h3>
+          <p class="text-muted text-sm leading-relaxed mb-4">A developer productivity tool that eliminates the friction of exploring unfamiliar GitHub repositories. Paste any GitHub URL and Swift-Scan fetches the codebase, explains the architecture in plain language, maps out key files, and auto-generates a step-by-step local setup guide — all in seconds. Ships as a browser extension so it lives right where developers work.</p>
+          <div class="flex flex-wrap gap-2"><span class="tech-tag">GitHub API</span><span class="tech-tag">Browser Extension</span><span class="tech-tag">JS</span></div>
+          <div class="cat-dots"><span class="cat-dot web" title="Web"></span><span class="cat-dot other" title="Other"></span></div>
+        </div>
+
+        <div class="project-card" data-category="ai uiux web">
+          <div class="project-number">06</div>
+          <div class="project-badge">AI / Fashion</div>
+          <h3 class="font-display text-2xl font-light text-primary mb-3">FashionNova AI</h3>
+          <p class="text-muted text-sm leading-relaxed mb-4">An AI-powered virtual styling web app that bridges unstitched fabric and finished fashion. Upload a photo of unstitched cloth and FashionNova generates photorealistic images of fully stitched outfits — then projects them onto your own photo so you can visualise exactly how the garment will look on you before it's made. Also produces spec sheets for the tailor.</p>
+          <div class="flex flex-wrap gap-2"><span class="tech-tag">AI Image Generation</span><span class="tech-tag">Virtual Try-On</span><span class="tech-tag">Web App</span></div>
+          <div class="cat-dots"><span class="cat-dot ai" title="AI"></span><span class="cat-dot uiux" title="UI/UX"></span></div>
+        </div>
+
+        <!-- SMART Goal — featured spotlight card -->
+        <div class="project-card featured-card col-span-1 md:col-span-2" data-category="mobile">
+          <div class="project-number">07</div>
+          <div class="flex flex-wrap gap-2 mb-3">
+            <div class="project-badge live-badge">📋 Contract Work</div>
+            <div class="project-badge">Cross-Dept Collaboration</div>
+          </div>
+          <h3 class="font-display text-3xl font-light text-primary mb-3">SMART Goal Management System</h3>
+          <p class="text-muted text-sm leading-relaxed mb-5">A commissioned mobile application built in collaboration with <span class="text-gold">MSc Speech &amp; Language Pathology students, Riphah International University</span>. The app helps SLP therapists set, track, and manage SMART (Specific, Measurable, Achievable, Relevant, Time-bound) therapy goals for their patients, with built-in progress visualization and accountability features.</p>
+
+          <div class="achievement-list mb-6">
+            <div class="achievement-item">
+              <span class="achievement-check">✓</span>
+              <span class="text-sm text-muted">Contracted by the Speech &amp; Language Pathology Department, Riphah</span>
+            </div>
+            <div class="achievement-item">
+              <span class="achievement-check">✓</span>
+              <span class="text-sm text-muted">Cross-disciplinary collaboration with SLP master's students as domain experts</span>
+            </div>
+            <div class="achievement-item">
+              <span class="achievement-check">✓</span>
+              <span class="text-sm text-muted">Full-stack mobile app: React Native frontend + Node.js + MongoDB backend</span>
+            </div>
+            <div class="achievement-item">
+              <span class="achievement-check">✓</span>
+              <span class="text-sm text-muted">Patient goal tracking, session logs, and progress visualisation dashboards</span>
+            </div>
+            <div class="achievement-item">
+              <span class="achievement-check">✓</span>
+              <span class="text-sm text-muted">Currently in testing phase with real therapists</span>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2">
+            <span class="tech-tag">React Native</span><span class="tech-tag">Node.js</span>
+            <span class="tech-tag">MongoDB</span><span class="tech-tag">Healthcare</span><span class="tech-tag">SLP</span>
+          </div>
+          <div class="cat-dots"><span class="cat-dot mobile" title="Mobile"></span></div>
+        </div>
+
+        <div class="project-card" data-category="other web">
+          <div class="project-number">08</div>
+          <h3 class="font-display text-2xl font-light text-primary mb-3">Student Portal</h3>
+          <p class="text-muted text-sm leading-relaxed mb-6">Migrated legacy file-based system to MySQL. Built AdminCourses module using Java Swing.</p>
+          <div class="flex flex-wrap gap-2"><span class="tech-tag">Java</span><span class="tech-tag">MySQL</span><span class="tech-tag">Swing</span></div>
+          <div class="cat-dots"><span class="cat-dot other" title="Other"></span></div>
+        </div>
+
+        <div class="project-card" data-category="uiux other">
+          <div class="project-number">09</div>
+          <h3 class="font-display text-2xl font-light text-primary mb-3">CraveKart</h3>
+          <p class="text-muted text-sm leading-relaxed mb-6">Online food delivery system with complete UML Use Case diagrams modeling actors, workflows, and business logic.</p>
+          <div class="flex flex-wrap gap-2"><span class="tech-tag">UML</span><span class="tech-tag">System Design</span></div>
+          <div class="cat-dots"><span class="cat-dot uiux" title="UI/UX"></span><span class="cat-dot other" title="Other"></span></div>
+        </div>
+
+        <div class="project-empty col-span-1 md:col-span-3 hidden" id="noProjects">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="text-dim mx-auto mb-4"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <p class="text-dim text-sm">No projects in this category yet.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ DEPLOYMENTS -->
+  <section id="deployments" class="py-32 relative">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="section-header mb-20">
+        <span class="font-mono text-gold text-xs tracking-[0.4em] uppercase">03 — Deployments</span>
+        <h2 class="font-display text-[clamp(2.5rem,6vw,5rem)] font-light mt-4">Live in Production</h2>
+        <p class="text-muted mt-4 max-w-xl">I don't just build — I ship. Every site below went through my full deployment pipeline: code, hosting, domain, DNS, security, and search engine visibility.</p>
+      </div>
+
+      <!-- Deployment Pipeline Visual -->
+      <div class="pipeline-visual mb-16">
+        <div class="pipeline-step-wrap">
+          <div class="pipeline-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <p class="pipeline-label">Code</p>
+          <p class="pipeline-sub">HTML / CSS / JS</p>
+        </div>
+        <div class="pipeline-connector"></div>
+        <div class="pipeline-step-wrap">
+          <div class="pipeline-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          </div>
+          <p class="pipeline-label">GitHub Pages</p>
+          <p class="pipeline-sub">Free Hosting</p>
+        </div>
+        <div class="pipeline-connector"></div>
+        <div class="pipeline-step-wrap">
+          <div class="pipeline-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+          </div>
+          <p class="pipeline-label">Custom Domain</p>
+          <p class="pipeline-sub">DNS Connected</p>
+        </div>
+        <div class="pipeline-connector"></div>
+        <div class="pipeline-step-wrap">
+          <div class="pipeline-icon-wrap orange-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <p class="pipeline-label">Cloudflare</p>
+          <p class="pipeline-sub">DNS Nameservers</p>
+        </div>
+        <div class="pipeline-connector"></div>
+        <div class="pipeline-step-wrap">
+          <div class="pipeline-icon-wrap green-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          </div>
+          <p class="pipeline-label">HTTPS / SSL</p>
+          <p class="pipeline-sub">Secured</p>
+        </div>
+        <div class="pipeline-connector"></div>
+        <div class="pipeline-step-wrap">
+          <div class="pipeline-icon-wrap blue-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </div>
+          <p class="pipeline-label">Google Index</p>
+          <p class="pipeline-sub">Search Console</p>
+        </div>
+      </div>
+
+      <!-- Live Sites -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+        <!-- Speed-Flo -->
+        <div class="deployment-card">
+          <div class="deployment-header">
+            <div class="deployment-status-dot"></div>
+            <span class="deployment-status-text">Live</span>
+            <span class="deployment-domain">speed-flofilters.com</span>
+          </div>
+          <h3 class="font-display text-2xl font-light text-primary mb-2 mt-4">Speed-Flo Filter Industries</h3>
+          <p class="text-muted text-sm leading-relaxed mb-6">Corporate website for Pakistan's leading filter manufacturer. Built for a real client — covers products, industries served, team, CEO message, and contact. Fully responsive multi-page site.</p>
+          
+          <div class="deployment-specs">
+            <div class="spec-row">
+              <span class="spec-key">Stack</span>
+              <span class="spec-val">HTML · CSS · JavaScript</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Hosting</span>
+              <span class="spec-val">GitHub Pages (free)</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">DNS</span>
+              <span class="spec-val">Cloudflare Nameservers</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Security</span>
+              <span class="spec-val">HTTPS / SSL enabled</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">SEO</span>
+              <span class="spec-val">Google Search Console + Sitemap</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Client</span>
+              <span class="spec-val">Speed-Flo Filter Industries, Islamabad</span>
+            </div>
+          </div>
+
+          <a href="https://speed-flofilters.com/" target="_blank" class="deployment-link mt-6">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Open speed-flofilters.com
+          </a>
+        </div>
+
+        <!-- Elysian Clinic -->
+        <div class="deployment-card">
+          <div class="deployment-header">
+            <div class="deployment-status-dot"></div>
+            <span class="deployment-status-text">Ongoing</span>
+            <span class="deployment-domain">Client Project</span>
+          </div>
+          <h3 class="font-display text-2xl font-light text-primary mb-2 mt-4">Elysian Clinic</h3>
+          <p class="text-muted text-sm leading-relaxed mb-6">Modern, responsive full-stack website for a medical clinic. Developed with a focus on clean UI, appointment information, and professional brand presentation.</p>
+
+          <div class="deployment-specs">
+            <div class="spec-row">
+              <span class="spec-key">Stack</span>
+              <span class="spec-val">Full-Stack (MERN)</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Status</span>
+              <span class="spec-val">In active development</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-key">Type</span>
+              <span class="spec-val">Medical / Healthcare</span>
+            </div>
+          </div>
+
+          <div class="deployment-coming-soon mt-6">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Deployment in progress
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ RESUME -->
+  <section id="resume" class="py-32 relative">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="section-header mb-12">
+        <span class="font-mono text-gold text-xs tracking-[0.4em] uppercase">04 — Resume</span>
+        <h2 class="font-display text-[clamp(2.5rem,6vw,5rem)] font-light mt-4">My CV</h2>
+      </div>
+      <div class="resume-actions mb-8 flex flex-wrap gap-4 items-center">
+        <a href="Hoor Spogmay CV.pdf" download class="btn-primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download PDF
+        </a>
+        <a href="Hoor Spogmay CV.pdf" target="_blank" class="btn-ghost">Open in New Tab</a>
+      </div>
+      <div class="resume-embed-wrap">
+        <iframe src="Hoor Spogmay CV.pdf" class="resume-iframe" title="Hoor Spogmay CV"></iframe>
+        <div class="resume-fallback">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" class="text-dim mx-auto mb-4"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          <p class="text-dim text-sm mb-4">PDF preview not available in this browser.</p>
+          <a href="Hoor Spogmay CV.pdf" download class="btn-primary">Download CV</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ VIDEOS -->
+  <section id="videos" class="py-32 relative">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="section-header mb-20">
+        <span class="font-mono text-gold text-xs tracking-[0.4em] uppercase">05 — Videos</span>
+        <h2 class="font-display text-[clamp(2.5rem,6vw,5rem)] font-light mt-4">Project Demos</h2>
+        <p class="text-muted mt-4 max-w-lg">Watch my projects in action. Click any card to play the demo.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <div class="video-card" onclick="openVideo('videos/Speedflo.mp4','Speedflo — AI-Powered Fitness App')">
+          <div class="video-thumb-wrap">
+            <video class="video-thumb" src="videos/Speedflo.mp4" preload="metadata" muted playsinline></video>
+            <div class="video-play-overlay"><div class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#080c10"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+            <span class="video-label">Live Website</span>
+          </div>
+          <div class="video-info"><p class="video-title">Speedflo</p><p class="video-meta">AI · Fitness App</p></div>
+        </div>
+
+        <div class="video-card" onclick="openVideo('videos/Drowsiness.mp4','Drowsiness Detection System')">
+          <div class="video-thumb-wrap">
+            <video class="video-thumb" src="videos/Drowsiness.mp4" preload="metadata" muted playsinline></video>
+            <div class="video-play-overlay"><div class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#080c10"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+            <span class="video-label">AI Agent</span>
+          </div>
+          <div class="video-info"><p class="video-title">Drowsiness Detection</p><p class="video-meta">Python · MediaPipe</p></div>
+        </div>
+
+        <div class="video-card" onclick="openVideo('videos/SwiftScan.mp4','Swift-Scan — Code Explorer')">
+          <div class="video-thumb-wrap">
+            <video class="video-thumb" src="videos/SwiftScan.mp4" preload="metadata" muted playsinline></video>
+            <div class="video-play-overlay"><div class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#080c10"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+            <span class="video-label">Tool</span>
+          </div>
+          <div class="video-info"><p class="video-title">Swift-Scan</p><p class="video-meta">GitHub API · Extension</p></div>
+        </div>
+
+        <div class="video-card" onclick="openVideo('videos/fashionnova.mp4','FashionNova AI — Virtual Styling')">
+          <div class="video-thumb-wrap">
+            <video class="video-thumb" src="videos/fashionnova.mp4" preload="metadata" muted playsinline></video>
+            <div class="video-play-overlay"><div class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#080c10"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+            <span class="video-label">AI/Fashion</span>
+          </div>
+          <div class="video-info"><p class="video-title">FashionNova AI</p><p class="video-meta">AI · Image Generation</p></div>
+        </div>
+
+        <div class="video-card" onclick="openVideo('videos/SLP.mp4','SMART Goal Management System')">
+          <div class="video-thumb-wrap">
+            <video class="video-thumb" src="videos/SLP.mp4" preload="metadata" muted playsinline></video>
+            <div class="video-play-overlay"><div class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="#080c10"><polygon points="5,3 19,12 5,21"/></svg></div></div>
+            <span class="video-label">Mobile</span>
+          </div>
+          <div class="video-info"><p class="video-title">SMART Goal System</p><p class="video-meta">React Native · Node.js</p></div>
+        </div>
+  </section>
+
+  <!-- Video Modal -->
+  <div class="video-modal fixed inset-0 z-[100]" id="videoModal">
+    <div class="modal-backdrop absolute inset-0 bg-black/92" id="modalBackdrop"></div>
+    <div class="modal-content relative z-10 w-full max-w-5xl mx-4">
+      <button class="modal-close absolute -top-12 right-0 flex items-center gap-2 text-muted hover:text-gold transition-colors" id="modalClose">
+        <span class="font-mono text-xs tracking-widest">ESC</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <video id="modalVideo" class="w-full rounded-sm shadow-2xl" controls></video>
+      <p class="text-muted mt-4 font-display text-lg italic" id="modalVideoTitle"></p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════ EXPERIENCE -->
+  <section id="experience" class="py-32 relative">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="section-header mb-20">
+        <span class="font-mono text-gold text-xs tracking-[0.4em] uppercase">06 — Experience</span>
+        <h2 class="font-display text-[clamp(2.5rem,6vw,5rem)] font-light mt-4">Leadership &amp; Work</h2>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+        <div>
+          <h3 class="font-mono text-xs text-dim tracking-widest uppercase mb-8">Leadership</h3>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="flex items-start justify-between gap-4 mb-2">
+                  <h4 class="font-display text-xl font-light text-primary">President – Riphah Computing Society</h4>
+                  <span class="font-mono text-xs text-gold whitespace-nowrap">2026–2027</span>
+                </div>
+                <p class="text-xs text-dim mb-3">Riphah International University</p>
+                <ul class="text-muted text-sm space-y-2">
+                  <li>• Leading university-wide computing initiatives</li>
+                  <li>• Conducted hackathon &amp; hosted OSFP Day</li>
+                  <li>• Organized Cultural Stalls — International Student Convention Expo 2026</li>
+                </ul>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="flex items-start justify-between gap-4 mb-2">
+                  <h4 class="font-display text-xl font-light text-primary">President – CyberSphere</h4>
+                  <span class="font-mono text-xs text-gold whitespace-nowrap">2024–2025</span>
+                </div>
+                <p class="text-xs text-dim mb-3">Riphah International University · 🏆 Appreciation Award</p>
+                <ul class="text-muted text-sm space-y-2">
+                  <li>• Organized Online Coding Competition</li>
+                  <li>• Delivered cybersecurity awareness webinars</li>
+                  <li>• Designed "Escape 404" — interactive tech event</li>
+                </ul>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="flex items-start justify-between gap-4 mb-2">
+                  <h4 class="font-display text-xl font-light text-primary">Data &amp; Record Manager</h4>
+                  <span class="font-mono text-xs text-gold whitespace-nowrap">2024</span>
+                </div>
+                <p class="text-xs text-dim mb-3">AI Community of Pakistan</p>
+                <p class="text-muted text-sm">Managed structured records, event documentation, and coordination.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="font-mono text-xs text-dim tracking-widest uppercase mb-8">Work Experience</h3>
+          <div class="space-y-6">
+            <div class="exp-card">
+              <div class="exp-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c8a97e" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+              <div class="flex-1">
+                <div class="flex items-center justify-between mb-1">
+                  <h4 class="text-primary font-medium">Website Developer &amp; Deployment Engineer</h4>
+                  <span class="font-mono text-xs text-gold">Live ✓</span>
+                </div>
+                <p class="text-xs text-dim mb-2">Speed-Flo Filter Industries</p>
+                <p class="text-muted text-sm mb-3">Built full corporate website and handled end-to-end deployment: GitHub Pages hosting, custom domain, Cloudflare DNS, HTTPS security, and Google Search Console indexing.</p>
+                <a href="https://speed-flofilters.com/" target="_blank" class="exp-external-link">speed-flofilters.com ↗</a>
+              </div>
+            </div>
+            <div class="exp-card">
+              <div class="exp-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c8a97e" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+              <div>
+                <div class="flex items-center justify-between mb-1">
+                  <h4 class="text-primary font-medium">Full Stack Mobile App Developer</h4>
+                  <span class="font-mono text-xs text-gold">In Testing</span>
+                </div>
+                <p class="text-xs text-dim mb-2">Research Collaboration – Riphah International University</p>
+                <p class="text-muted text-sm">Mobile application for Speech &amp; Language Pathology therapists.</p>
+              </div>
+            </div>
+            <div class="exp-card">
+              <div class="exp-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c8a97e" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 010 20"/></svg></div>
+              <div>
+                <div class="flex items-center justify-between mb-1">
+                  <h4 class="text-primary font-medium">Website Developer</h4>
+                  <span class="font-mono text-xs text-gold">Ongoing</span>
+                </div>
+                <p class="text-xs text-dim mb-2">Elysian Clinic</p>
+                <p class="text-muted text-sm">Developing modern, responsive full-stack clinic website.</p>
+              </div>
+            </div>
+            <div class="exp-card">
+              <div class="exp-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c8a97e" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+              <div>
+                <div class="flex items-center justify-between mb-1">
+                  <h4 class="text-primary font-medium">Competition Head</h4>
+                  <span class="font-mono text-xs text-gold">2024</span>
+                </div>
+                <p class="text-xs text-dim mb-2">CLC Conference</p>
+                <p class="text-muted text-sm">Managed arts, essay, photography, poster, and painting competitions.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════ CONTACT -->
+  <section id="contact" class="py-32 relative">
+    <div class="contact-bg"></div>
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="section-header mb-20">
+        <span class="font-mono text-gold text-xs tracking-[0.4em] uppercase">07 — Contact</span>
+        <h2 class="font-display text-[clamp(2.5rem,6vw,5rem)] font-light mt-4">Let's Connect</h2>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+        <div>
+          <p class="font-display text-xl font-light text-muted leading-relaxed mb-10">Open to collaborations, internships, and meaningful projects. Let's build something great together.</p>
+          <div class="space-y-4">
+            <a href="mailto:hoorspogmay48@gmail.com" class="contact-link">
+              <div class="contact-link-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8a97e" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+              <div><p class="text-xs text-dim tracking-widest uppercase mb-1">Email</p><p class="text-primary">hoorspogmay48@gmail.com</p></div>
+            </a>
+            <a href="https://www.linkedin.com/in/hoor-spogmay/" target="_blank" class="contact-link">
+              <div class="contact-link-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="#c8a97e"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
+              <div><p class="text-xs text-dim tracking-widest uppercase mb-1">LinkedIn</p><p class="text-primary">linkedin.com/in/hoor-spogmay</p></div>
+            </a>
+            <a href="https://github.com/hoorspogmay" target="_blank" class="contact-link">
+              <div class="contact-link-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="#c8a97e"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg></div>
+              <div><p class="text-xs text-dim tracking-widest uppercase mb-1">GitHub</p><p class="text-primary">github.com/hoorspogmay</p></div>
+            </a>
+            <a href="Hoor Spogmay CV.pdf" download class="contact-link">
+              <div class="contact-link-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8a97e" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+              <div><p class="text-xs text-dim tracking-widest uppercase mb-1">Resume</p><p class="text-primary">Download CV (PDF)</p></div>
+            </a>
+          </div>
+        </div>
+        <div class="contact-form-wrap">
+          <div class="space-y-4">
+            <div><label class="text-xs text-dim tracking-widest uppercase block mb-2">Name</label><input type="text" placeholder="Your name" class="form-input" id="formName"/></div>
+            <div><label class="text-xs text-dim tracking-widest uppercase block mb-2">Email</label><input type="email" placeholder="your@email.com" class="form-input" id="formEmail"/></div>
+            <div><label class="text-xs text-dim tracking-widest uppercase block mb-2">Message</label><textarea placeholder="Tell me about your project..." class="form-input resize-none" rows="5" id="formMessage"></textarea></div>
+            <button class="btn-primary w-full mt-2" id="sendBtn">Send Message</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 border-t border-border">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="font-mono text-xs text-dim">© 2025 Hoor Spogmay. All rights reserved.</p>
+      <div class="flex items-center gap-5">
+        <a href="https://github.com/hoorspogmay" target="_blank" class="social-icon-link" title="GitHub">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/hoor-spogmay/" target="_blank" class="social-icon-link" title="LinkedIn">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="mailto:hoorspogmay48@gmail.com" class="social-icon-link" title="Email">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
