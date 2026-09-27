@@ -14,8 +14,6 @@
 
 ---
 
-<img align="right" src="https://capsule-render.vercel.app/api?type=rect&color=1d4a47&height=180&width=2&section=header" height="180"/>
-
 ## ◈ &nbsp;About
 
 I'm a 7th-semester software engineering student building things at the intersection of **AI and cybersecurity**. My final year project is an AI-driven phishing-awareness platform that adapts training content to a learner's personality profile — right now it's the most interesting problem I'm working on.
@@ -29,8 +27,6 @@ I care about building AI systems that are actually **domain-specific and behave 
 ---
 
 ## ◈ &nbsp;Currently Building
-
-<img src="https://capsule-render.vercel.app/api?type=rect&color=gradient&customColorList=0,2,12,30&height=3&width=100%25&section=header" width="100%"/>
 
 | &nbsp; | Project | Status |
 |:---:|:---|:---:|
