@@ -18,7 +18,7 @@
 
 I'm a 7th-semester software engineering student building things at the intersection of **AI and cybersecurity**. My final year project is an AI-driven phishing-awareness platform that adapts training content to a learner's personality profile — right now it's the most interesting problem I'm working on.
 
-Alongside that, I'm doing internship work in AI/ML on a dental SaaS product used by private practices in the US and UK.
+Alongside that, I'm doing internship work across two dental AI projects — a speech-to-text automation system and a patient-facing chatbot — both for practices in the US and UK. I also shipped a full AI-powered CV screening platform with documentation as a separate internship.
 
 I care about building AI systems that are actually **domain-specific and behave predictably** — not just general-purpose wrappers. The cybersecurity angle matters to me because the threats are real, the human factor is underexplored, and there's genuine research to be done.
 
@@ -31,9 +31,10 @@ I care about building AI systems that are actually **domain-specific and behave 
 | &nbsp; | Project | Status |
 |:---:|:---|:---:|
 | 🔐 | **Phishing-Awareness FYP** — Generative AI + BFI-2-XS personality-adaptive training | `Active · FYP` |
-| 🦷 | **Dental AI SaaS** — AI/ML for white-label multi-tenant patient assistant (US & UK) | `Active · Internship` |
-| 🎙️ | **Transcription** — Python speech-to-text with microphone capture | `Active · Internship` |
+| 🦷 | **Dental Automation & Transcription** — AI/ML speech-to-text pipeline for dental practices (US & UK) | `Active · Internship` |
+| 💬 | **Dental Clinic Chatbot** — AI chatbot for patient-facing dental clinic interactions | `Active · Internship` |
 | 👶 | **Parwarish** — AI parenting platform for Pakistani families | `Active` |
+| 📄 | **SwiftScan** — AI-powered CV screening platform with full documentation | `Complete · Internship` |
 
 ---
 
@@ -72,27 +73,28 @@ AI-powered parenting platform for Pakistani families. Combines an AI chatbot, cu
 <tr>
 <td width="50%" valign="top">
 
-### 🦷 &nbsp;AI Dental Patient Assistant
+### 🦷 &nbsp;Dental Automation & Transcription
 
-AI/ML components for a white-label, multi-tenant dental SaaS platform. Serves private practices in the US and UK — patient inquiries and elective dental treatment lead generation.
+AI/ML speech-to-text pipeline for dental practice workflows — microphone-based audio capture, transcription, and dental-domain processing. Built for private practices in the US and UK.
 
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
+![Python](https://img.shields.io/badge/Python_3.10-3776AB?style=flat-square&logo=python&logoColor=white)
+![FFmpeg](https://img.shields.io/badge/FFmpeg-007808?style=flat-square&logo=ffmpeg&logoColor=white)
 ![AI/ML](https://img.shields.io/badge/AI%2FML-1d4a47?style=flat-square)
+
+[![Repo](https://img.shields.io/badge/View_Repo-1d4a47?style=flat-square&logo=github&logoColor=c9a84c)](https://github.com/hoorspogmay/Transcription)
 
 `Active · Internship`
 
 </td>
 <td width="50%" valign="top">
 
-### 🎙️ &nbsp;Transcription Software
+### 💬 &nbsp;Dental Clinic Chatbot
 
-Python-based speech transcription with microphone audio capture and speech-to-text conversion.
+AI-powered patient-facing chatbot for dental clinics. Handles patient inquiries and supports lead generation for elective dental treatments.
 
-![Python](https://img.shields.io/badge/Python_3.10-3776AB?style=flat-square&logo=python&logoColor=white)
-![FFmpeg](https://img.shields.io/badge/FFmpeg-007808?style=flat-square&logo=ffmpeg&logoColor=white)
-
-[![Repo](https://img.shields.io/badge/View_Repo-1d4a47?style=flat-square&logo=github&logoColor=c9a84c)](https://github.com/hoorspogmay/Transcription)
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
+![Generative AI](https://img.shields.io/badge/Generative_AI-1d4a47?style=flat-square)
 
 `Active · Internship`
 
@@ -103,9 +105,12 @@ Python-based speech transcription with microphone audio capture and speech-to-te
 
 ### 📄 &nbsp;SwiftScan — CV Screening
 
-CV-screening software focused on making recruitment workflows more efficient.
+AI-powered CV screening platform that streamlines recruitment workflows. Completed with full documentation.
 
-`In development`
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
+
+`Complete · Internship`
 
 </td>
 <td width="50%" valign="top"></td>
